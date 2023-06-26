@@ -38,7 +38,7 @@ public class GetCloseState : BaseState
     public override void UpdateState(float speed, float deltaTime) 
     {
         // Get object position
-        var position = this.gameObject.transform.position;
+        var position = gameObject.transform.position;
 
         // Calculate movement
         position = Vector3.MoveTowards(position, this.objv, speed * deltaTime);

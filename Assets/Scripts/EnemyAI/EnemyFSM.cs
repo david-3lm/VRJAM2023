@@ -9,7 +9,7 @@ public class EnemyFSM : MonoBehaviour
     private BaseState initialState;
     private BaseState currentState;
 
-    private GameObject objv;
+    private Vector3 objv;
 
     private float speed = 0.5f;
 
@@ -17,21 +17,23 @@ public class EnemyFSM : MonoBehaviour
 
     public BaseState GetInitialState() { return this.initialState; }
     public BaseState GetCurrentState() { return this.currentState; }
-    public GameObject GetObjv() { return this.objv; }
+    public Vector3 GetObjv() { return this.objv; }
 
     public void SetInitialState(BaseState initialState) { this.initialState = initialState; }
     public void SetCurrentState(BaseState currentState) { this.currentState = currentState; }
-    public void SetObjv(GameObject objv) { this.objv = objv; }
+    public void SetObjv(Vector3 objv) { this.objv = objv; }
 
 
     // CONSTRUCTOR //
 
-    public EnemyFSM(BaseState initialState, BaseState currentState, GameObject objv) 
+    public EnemyFSM(BaseState initialState, BaseState currentState, Vector3 objv) 
     {
         this.initialState = initialState;
         this.currentState = currentState;
         this.objv = objv;
     }
+
+    public EnemyFSM() { }
 
 
     // METHODS //
@@ -39,7 +41,7 @@ public class EnemyFSM : MonoBehaviour
     private void Start()
     {
         currentState = initialState;
-        currentState.EnterState(objv.transform.position);
+        currentState.EnterState(objv);
     }
 
     private void Update()
@@ -54,6 +56,6 @@ public class EnemyFSM : MonoBehaviour
     {
         currentState.ExitState();
         currentState = newState;
-        currentState.EnterState(objv.transform.position);
+        currentState.EnterState(objv);
     }
 }

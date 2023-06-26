@@ -1194,9 +1194,9 @@ GameObject:
   - component: {fileID: 588725149}
   - component: {fileID: 588725148}
   - component: {fileID: 588725147}
-  - component: {fileID: 588725151}
-  - component: {fileID: 588725150}
   - component: {fileID: 588725152}
+  - component: {fileID: 588725151}
+  - component: {fileID: 588725153}
   m_Layer: 0
   m_Name: Enemigo4
   m_TagString: Untagged
@@ -1282,18 +1282,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588725145}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &588725150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588725145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b416e17be9008d046b56b1aaf169fd90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &588725151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1322,6 +1310,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &588725153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588725145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b416e17be9008d046b56b1aaf169fd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &804305777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1583,9 +1583,9 @@ GameObject:
   - component: {fileID: 858824972}
   - component: {fileID: 858824971}
   - component: {fileID: 858824970}
-  - component: {fileID: 858824974}
-  - component: {fileID: 858824973}
   - component: {fileID: 858824975}
+  - component: {fileID: 858824974}
+  - component: {fileID: 858824976}
   m_Layer: 0
   m_Name: Enemigo2
   m_TagString: Untagged
@@ -1671,18 +1671,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858824968}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &858824973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858824968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b416e17be9008d046b56b1aaf169fd90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &858824974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1711,6 +1699,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &858824976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858824968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b416e17be9008d046b56b1aaf169fd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &914621985
 GameObject:
   m_ObjectHideFlags: 0
@@ -3518,9 +3518,9 @@ GameObject:
   - component: {fileID: 1561404868}
   - component: {fileID: 1561404867}
   - component: {fileID: 1561404866}
-  - component: {fileID: 1561404870}
-  - component: {fileID: 1561404869}
   - component: {fileID: 1561404871}
+  - component: {fileID: 1561404870}
+  - component: {fileID: 1561404872}
   m_Layer: 0
   m_Name: Enemigo5
   m_TagString: Untagged
@@ -3606,18 +3606,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561404864}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1561404869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561404864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b416e17be9008d046b56b1aaf169fd90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1561404870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3646,6 +3634,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1561404872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561404864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b416e17be9008d046b56b1aaf169fd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1583091807
 GameObject:
   m_ObjectHideFlags: 0
@@ -4255,9 +4255,9 @@ GameObject:
   - component: {fileID: 1598622295}
   - component: {fileID: 1598622294}
   - component: {fileID: 1598622293}
-  - component: {fileID: 1598622297}
-  - component: {fileID: 1598622296}
   - component: {fileID: 1598622298}
+  - component: {fileID: 1598622297}
+  - component: {fileID: 1598622299}
   m_Layer: 0
   m_Name: Enemigo3
   m_TagString: Untagged
@@ -4343,18 +4343,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598622291}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1598622296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598622291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b416e17be9008d046b56b1aaf169fd90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1598622297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4383,6 +4371,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1598622299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598622291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b416e17be9008d046b56b1aaf169fd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1731117441
 GameObject:
   m_ObjectHideFlags: 0
@@ -4894,9 +4894,9 @@ GameObject:
   - component: {fileID: 1742454159}
   - component: {fileID: 1742454158}
   - component: {fileID: 1742454157}
-  - component: {fileID: 1742454161}
-  - component: {fileID: 1742454160}
   - component: {fileID: 1742454162}
+  - component: {fileID: 1742454161}
+  - component: {fileID: 1742454163}
   m_Layer: 0
   m_Name: Enemigo1
   m_TagString: Untagged
@@ -4982,18 +4982,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742454155}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1742454160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1742454155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b416e17be9008d046b56b1aaf169fd90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1742454161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5022,6 +5010,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1742454163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742454155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b416e17be9008d046b56b1aaf169fd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1836595018
 GameObject:
   m_ObjectHideFlags: 0

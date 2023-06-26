@@ -34,7 +34,15 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         this.objv = GameObject.Find("Player");
-        this.fsm = this.gameObject.GetComponent<EnemyFSM>();
+        Vector3 vecObj = this.objv.transform.position;
+
+        this.getCloseState = new GetCloseState(vecObj);
+        this.attackState = new AttackState(vecObj);
+        this.fleeState = new FleeState(vecObj);
+
+        //this.fsm = new EnemyFSM();
+        this.fsm = this.gameObject.GetComponent<EnemyFSM>() as EnemyFSM;
+        this.fsm.SetObjv(this.objv.transform.position);
 
         Vector3 distVec = this.gameObject.transform.position - this.objv.transform.position;
         this.dist = distVec.magnitude;
@@ -42,15 +50,15 @@ public class EnemyController : MonoBehaviour
         if(this.dist < 5)
         {
             fsm.SetInitialState(attackState);
-            fsm.SetCurrentState(attackState);
+            //fsm.SetCurrentState(attackState);
         } else if (this.dist < 3) 
         {
             fsm.SetInitialState(fleeState);
-            fsm.SetCurrentState(attackState);
+            //fsm.SetCurrentState(attackState);
         } else 
         { 
             fsm.SetInitialState(getCloseState);
-            fsm.SetCurrentState(attackState);
+            //fsm.SetCurrentState(attackState);
         }
     }
 

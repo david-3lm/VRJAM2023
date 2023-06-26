@@ -73,7 +73,7 @@ public class Canyon : MonoBehaviour
         joystick.onValueChangeX.AddListener(TurnHorizontal);
         joystick.onValueChangeY.AddListener(TurnVertical);
 
-        //ChangeBarrelMesh();
+        ChangeBarrelMesh();
     }
 
     private void Update()

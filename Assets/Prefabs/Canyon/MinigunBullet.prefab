@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4496855200964981864}
   - component: {fileID: 4496855200964981865}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: MinigunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

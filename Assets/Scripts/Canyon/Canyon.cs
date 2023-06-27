@@ -21,9 +21,13 @@ public class Canyon : MonoBehaviour
     public Weapon currentWeapon;
 
 
+    public GameObject[] barrels = new GameObject[2];
+
     [Header("First Weapon")]
 
     public GameObject firstBullet;
+
+    //public GameObject firstBarrel;
 
     public int firstDamage;
 
@@ -34,6 +38,8 @@ public class Canyon : MonoBehaviour
     private bool firstShooting;
 
     private bool firstReloaded;
+
+    private Animator firstAnimator;
 
     [Header("Second Weapon")]
 
@@ -47,6 +53,8 @@ public class Canyon : MonoBehaviour
 
     private bool secondReloaded;
 
+    private Animator secondAnimator;
+
 
     private bool canShoot;
 
@@ -59,15 +67,19 @@ public class Canyon : MonoBehaviour
 
         canShoot = true;
 
+        firstAnimator = barrels[0].GetComponent<Animator>();
+        secondAnimator = barrels[1].GetComponent<Animator>();
+
         joystick.onValueChangeX.AddListener(TurnHorizontal);
         joystick.onValueChangeY.AddListener(TurnVertical);
+
+        ChangeBarrelMesh();
     }
 
     private void Update()
     {
         if (currentWeapon == Weapon.first)
         {
-            print("CanShoot = " + canShoot + ", Shooting = " + firstShooting + ", Reloaded = " + firstReloaded);
             if (canShoot && firstShooting && firstReloaded)
             {
                 FirstShoot();
@@ -85,6 +97,21 @@ public class Canyon : MonoBehaviour
         if(currentWeapon > Weapon.second)
         {
             currentWeapon = Weapon.first;
+        }
+        ChangeBarrelMesh();
+    }
+
+    public void ChangeBarrelMesh()
+    {
+        DisableAllBarrels();
+        barrels[(int)currentWeapon].SetActive(true);
+    }
+
+    public void DisableAllBarrels()
+    {
+        foreach(GameObject go in barrels)
+        {
+            go.SetActive(false);
         }
     }
 
@@ -109,11 +136,13 @@ public class Canyon : MonoBehaviour
     public void StartFirstShoot()
     {
         firstShooting = true;
+        firstAnimator.SetBool("Shooting", true);
     }
 
     public void EndFirstShoot()
     {
         firstShooting = false;
+        firstAnimator.SetBool("Shooting", false);
     }
 
     public void SecondShoot()
@@ -127,6 +156,8 @@ public class Canyon : MonoBehaviour
                 b.GetComponent<CanyonBullet>().SetBullet(secondDamage, secondForce);
 
                 source.Play();
+
+                secondAnimator.SetTrigger("Shoot");
 
                 secondReloaded = false;
 
@@ -144,13 +175,13 @@ public class Canyon : MonoBehaviour
     public void TurnHorizontal(float x)
     {
         canyonPivot.transform.RotateAround(canyonPivot.transform.position, Vector3.up, x);
-        playerCamera.transform.RotateAround(playerCamera.transform.position, Vector3.up, x);
+        //playerCamera.transform.RotateAround(playerCamera.transform.position, Vector3.up, x);
     }
 
     public void TurnVertical(float y)
     {
         canyonPivot.transform.RotateAround(canyonPivot.transform.position, canyonPivot.transform.right, y);
-        playerCamera.transform.RotateAround(playerCamera.transform.position, playerCamera.transform.right, y);
+        //playerCamera.transform.RotateAround(playerCamera.transform.position, playerCamera.transform.right, y);
     }
 
     

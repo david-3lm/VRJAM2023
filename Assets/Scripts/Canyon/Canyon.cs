@@ -5,7 +5,7 @@ using UnityEngine.XR.Content.Interaction;
 
 public class Canyon : MonoBehaviour
 {
-    public GameObject shootOrigin;
+    //public GameObject shootOrigin;
 
     public AudioSource source;
 
@@ -23,6 +23,8 @@ public class Canyon : MonoBehaviour
 
     public GameObject[] barrels = new GameObject[2];
 
+    public GameObject[] shootOrigins = new GameObject[2];
+
     [Header("First Weapon")]
 
     public GameObject firstBullet;
@@ -39,6 +41,8 @@ public class Canyon : MonoBehaviour
 
     private Animator firstAnimator;
 
+    private AudioSource firstAudioSource;
+
     [Header("Second Weapon")]
 
     public GameObject secondBullet;
@@ -52,6 +56,8 @@ public class Canyon : MonoBehaviour
     private bool secondReloaded;
 
     private Animator secondAnimator;
+
+    private AudioSource secondAudioSource;
 
 
     private bool canShoot;
@@ -68,12 +74,28 @@ public class Canyon : MonoBehaviour
         firstAnimator = barrels[0].GetComponent<Animator>();
         secondAnimator = barrels[1].GetComponent<Animator>();
 
+        firstAudioSource = shootOrigins[0].GetComponent<AudioSource>();
+        secondAudioSource = shootOrigins[1].GetComponent<AudioSource>();
+
         joystick.onValueChangeX.AddListener(TurnHorizontal);
         joystick.onValueChangeY.AddListener(TurnVertical);
 
         ChangeBarrelMesh();
     }
 
+    /*
+    private void FixedUpdate()
+    {
+        if(currentWeapon == Weapon.first)
+        {
+            if (canShoot && firstShooting && firstReloaded)
+            {
+                FirstShoot();
+            }
+        }
+    }*/
+
+    
     private void Update()
     {
         if (currentWeapon == Weapon.first)
@@ -88,6 +110,7 @@ public class Canyon : MonoBehaviour
 
         }
     }
+    
 
     public void RotateWeapon()
     {
@@ -115,11 +138,11 @@ public class Canyon : MonoBehaviour
 
     private void FirstShoot()
     {
-        GameObject b = Instantiate(firstBullet, shootOrigin.transform.position, shootOrigin.transform.rotation);
+        GameObject b = Instantiate(firstBullet, shootOrigins[(int)currentWeapon].transform.position, shootOrigins[(int)currentWeapon].transform.rotation);
         b.transform.SetParent(null);
         b.GetComponent<CanyonBullet>().SetBullet(firstDamage, firstForce);
 
-        source.Play();
+        
 
         firstReloaded = false;
 
@@ -134,12 +157,14 @@ public class Canyon : MonoBehaviour
     public void StartFirstShoot()
     {
         firstShooting = true;
+        firstAudioSource.Play();
         firstAnimator.SetBool("Shooting", true);
     }
 
     public void EndFirstShoot()
     {
         firstShooting = false;
+        firstAudioSource.Pause();
         firstAnimator.SetBool("Shooting", false);
     }
 
@@ -149,11 +174,11 @@ public class Canyon : MonoBehaviour
         {
             if (canShoot && secondReloaded)
             {
-                GameObject b = Instantiate(secondBullet, shootOrigin.transform.position, shootOrigin.transform.rotation);
+                GameObject b = Instantiate(secondBullet, shootOrigins[(int)currentWeapon].transform.position, shootOrigins[(int)currentWeapon].transform.rotation);
                 b.transform.SetParent(null);
                 b.GetComponent<CanyonBullet>().SetBullet(secondDamage, secondForce);
 
-                source.Play();
+                secondAudioSource.Play();
 
                 secondAnimator.SetTrigger("Shoot");
 

@@ -27,15 +27,13 @@ public class Canyon : MonoBehaviour
 
     public GameObject firstBullet;
 
-    //public GameObject firstBarrel;
-
     public int firstDamage;
 
     public float firstForce;
 
     public float firstReloadTime;
 
-    private bool firstShooting;
+    public bool firstShooting;
 
     private bool firstReloaded;
 

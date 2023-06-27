@@ -4035,15 +4035,16 @@ MonoBehaviour:
   canyonPivot: {fileID: 1295921729}
   joystick: {fileID: 484131513}
   playerCamera: {fileID: 1839318231}
-  currentWeapon: 1
+  currentWeapon: 0
   barrels:
-  - {fileID: 0}
+  - {fileID: 1077750294137817123}
   - {fileID: 71247823}
   firstBullet: {fileID: 4496855200964981870, guid: 1b7d16864aa07b5469cdb55baed6bcf5,
     type: 3}
   firstDamage: 10
   firstForce: 10000
   firstReloadTime: 0.1
+  firstShooting: 0
   secondBullet: {fileID: 4698463707711945556, guid: d8cec0e74f298b740aab51fffd4410f3,
     type: 3}
   secondDamage: 100

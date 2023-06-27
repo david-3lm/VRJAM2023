@@ -33,7 +33,7 @@ public class Canyon : MonoBehaviour
 
     public float firstReloadTime;
 
-    public bool firstShooting;
+    private bool firstShooting;
 
     private bool firstReloaded;
 

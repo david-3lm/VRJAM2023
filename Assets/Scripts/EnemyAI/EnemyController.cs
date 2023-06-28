@@ -49,33 +49,41 @@ public class EnemyController : MonoBehaviour
 
         if(this.dist < 5)
         {
-            fsm.SetInitialState(attackState);
-            //fsm.SetCurrentState(attackState);
-        } else if (this.dist < 3) 
-        {
+            Vector3 ownPos = this.objv.transform.position;
+            this.fleeState.SetOwn(ownPos);
             fsm.SetInitialState(fleeState);
-            //fsm.SetCurrentState(attackState);
+        } else if (this.dist < 8) 
+        {
+            Vector3 ownPos = this.objv.transform.position;
+            this.attackState.SetOwn(ownPos);
+            fsm.SetInitialState(attackState);
         } else 
-        { 
+        {
+            Vector3 ownPos = this.objv.transform.position;
+            this.getCloseState.SetOwn(ownPos);
             fsm.SetInitialState(getCloseState);
-            //fsm.SetCurrentState(attackState);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (this.dist < 5)
+        Vector3 distVec = this.gameObject.transform.position - this.objv.transform.position;
+        this.dist = distVec.magnitude;
+
+        StateType currentStateType = this.fsm.GetCurrentState().GetStateType();
+
+        if (currentStateType == StateType.ATTACK && this.dist < 5)
         {
-            fsm.ChangeState(attackState);
+            fsm.ChangeState(fleeState, this.gameObject.transform.position);
         }
-        else if (this.dist < 3)
+        else if (currentStateType == StateType.GET_CLOSE && this.dist < 8)
         {
-            fsm.ChangeState(fleeState);
+            fsm.ChangeState(attackState, this.gameObject.transform.position);
         }
-        else
+        else if (currentStateType == StateType.FLEE && this.dist > 10)
         {
-            fsm.ChangeState(getCloseState);
+            fsm.ChangeState(getCloseState, this.gameObject.transform.position);
         }
     }
 }

@@ -46,16 +46,19 @@ public class EnemyFSM : MonoBehaviour
 
     private void Update()
     {
-        currentState.UpdateState(speed, Time.deltaTime);
+        Vector3 newPos = currentState.UpdateState(speed, Time.deltaTime);
+        this.gameObject.transform.position = newPos;
     }
 
     /**********************************************************
      * Method that is executed to change the state of the FSM *
      **********************************************************/
-    public void ChangeState(BaseState newState)
+    public void ChangeState(BaseState newState, Vector3 ownPos)
     {
+        Debug.Log("Cambio de estado");
         currentState.ExitState();
         currentState = newState;
+        currentState.SetOwn(ownPos);
         currentState.EnterState(objv);
     }
 }

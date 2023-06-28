@@ -6,14 +6,20 @@ public class GetCloseState : BaseState
 {
     // VARIABLES //
 
+    private StateType type = StateType.GET_CLOSE;
+
     private Vector3 objv;
+    private Vector3 own;
 
 
     // GETTERS & SETTERS //
 
+    public override StateType GetStateType() { return this.type; }
     public Vector3 GetObjv() { return this.objv; }
+    public Vector3 GetOwn() { return this.own; }
 
     public void SetObjv(Vector3 objv) { this.objv = objv; }
+    public override void SetOwn(Vector3 own) { this.own = own; }
 
 
     // CONTRUCTOR //
@@ -35,16 +41,13 @@ public class GetCloseState : BaseState
     /*****************************************************
      * Method that is executed while the state is active *
      *****************************************************/
-    public override void UpdateState(float speed, float deltaTime) 
+    public override Vector3 UpdateState(float speed, float deltaTime) 
     {
-        // Get object position
-        var position = gameObject.transform.position;
-
         // Calculate movement
-        position = Vector3.MoveTowards(position, this.objv, speed * deltaTime);
+        this.own = Vector3.MoveTowards(this.own, this.objv, speed * deltaTime);
 
         // Move
-        this.gameObject.transform.position = position;
+        return own;
     }
 
 

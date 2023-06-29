@@ -14,6 +14,8 @@ public class AttackState : BaseState
 
     public UnityEvent attackEvent = new UnityEvent();
 
+    private float contador = 3;
+    private float attackRate = 3;
 
     // GETTERS & SETTERS //
 
@@ -48,9 +50,8 @@ public class AttackState : BaseState
         {
             // Calculate movement
             this.own = Vector3.MoveTowards(this.own, this.objv, speed * Time.deltaTime);
-
-            // Attack
-            //Debug.Log("Ataco aire");
+            //Evento ataque
+            attackEvent.Invoke();
         }
         else
         {
@@ -58,12 +59,17 @@ public class AttackState : BaseState
             // Calculate movement
             this.own = Vector3.MoveTowards(this.own, new Vector3(this.objv.x, landDistance, this.objv.z), speed * Time.deltaTime);
 
-            // Attack
-            //Debug.Log("Ataco tierra");
+            if (contador > 0)
+            {
+                contador = contador -Time.deltaTime;
+            }
+            else
+            {
+                //Evento ataque
+                attackEvent.Invoke();
+                contador = attackRate;
+            }
         }
-
-        Debug.Log("Evento Ataque");
-        attackEvent.Invoke();
 
         // Move
         return this.own;

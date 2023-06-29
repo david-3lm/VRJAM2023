@@ -66,6 +66,7 @@ public class EnemyController : MonoBehaviour
         this.fsm.SetObjv(this.objv.transform.position);
         this.fsm.SetSpeed(speed);
         this.fsm.SetLandDistance(landDistance);
+        this.fsm.SetType(type);
 
         Vector3 distVec = this.gameObject.transform.position - this.objv.transform.position;
         this.dist = distVec.magnitude;  
@@ -106,17 +107,17 @@ public class EnemyController : MonoBehaviour
 
         if (currentStateType == StateType.ATTACK && this.dist < distAlejarse)
         {
-            Debug.Log("Cambio de Ataque a Flee");
+            //Debug.Log("Cambio de Ataque a Flee");
             fsm.ChangeState(fleeState, this.gameObject.transform.position);
         }
         else if (currentStateType == StateType.GET_CLOSE && this.dist < distAtacar)
         {
-            Debug.Log("Cambio de Get_Close a Attack");
+            //Debug.Log("Cambio de Get_Close a Attack");
             fsm.ChangeState(attackState, this.gameObject.transform.position);
         }
         else if (currentStateType == StateType.FLEE && this.dist > distAcercarse)
         {
-            Debug.Log("Cambio de Flee a Get_Close");
+            //Debug.Log("Cambio de Flee a Get_Close");
             fsm.ChangeState(getCloseState, this.gameObject.transform.position);
         }
     }
@@ -131,18 +132,24 @@ public class EnemyController : MonoBehaviour
 
     private void Attack()
     {
-        print("Ataque");
         if (type == "Flying")
         {
             GameObject bullet = Instantiate(airBullet, shootOrigin.transform.position, shootOrigin.transform.rotation);
             bullet.transform.SetParent(null);
-            bullet.GetComponentInChildren<EnemyBullet>().ShootBullet(0, 2000);
+            bullet.GetComponentInChildren<EnemyBullet>().ShootBullet(0.01f, 2000);
         }
         else
         {
             GameObject bullet = Instantiate(groundBullet, shootOrigin.transform.position, shootOrigin.transform.rotation);
             bullet.transform.SetParent(null);
-            bullet.GetComponentInChildren<EnemyBullet>().ShootBullet(0, 1000);
+            bullet.GetComponentInChildren<EnemyBullet>().ShootBullet(5f, 1000);
         }
+    }
+
+    public void ChangePos(Vector3 pos)
+    {
+        this.attackState.SetOwn(pos);
+        this.getCloseState.SetOwn(pos);
+        this.fleeState.SetOwn(pos);
     }
 }

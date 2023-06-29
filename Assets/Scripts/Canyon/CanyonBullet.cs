@@ -23,7 +23,7 @@ public class CanyonBullet : MonoBehaviour
 
     private void TimeDestroy()
     {
-        Destroy(gameObject);
+        Destroy(this.gameObject.transform.parent.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

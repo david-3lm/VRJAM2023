@@ -4467,8 +4467,8 @@ MonoBehaviour:
   type: Land
   landDistance: -25
   distAlejarse: 30
-  distAtacar: 40
-  distAcercarse: 50
+  distAtacar: 55
+  distAcercarse: 60
   airBullet: {fileID: 1374758371876617364, guid: b82690bbd3d531849891add44656caa8,
     type: 3}
   groundBullet: {fileID: 2344256589456835730, guid: 8243e1e469ed79344bc8c89816cb1713,
@@ -9945,10 +9945,10 @@ MonoBehaviour:
   playerRef: {fileID: 1471487359}
   playerLife: 100
   flyingEnemyRef: {fileID: 919132148385405985}
-  flyingPoolSize: 4
+  flyingPoolSize: 5
   flyingEnemiesOnScreen: 3
   landEnemyRef: {fileID: 919132148999715151}
-  landPoolSize: 4
+  landPoolSize: 5
   landEnemiesOnScreen: 3
   isPaused: 0
   canvasUI_Ingame: {fileID: 0}

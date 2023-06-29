@@ -6,13 +6,13 @@ public class EnemyBullet : MonoBehaviour
 {
     public Rigidbody rb;
 
-    private int damage;
+    private float damage;
 
     private float force;
 
     private float lifeTime = 3.0f;
 
-    public void ShootBullet(int d, float f)
+    public void ShootBullet(float d, float f)
     {
         damage = d;
         force = f;
@@ -24,7 +24,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void TimeDestroy()
     {
-        Destroy(gameObject);
+        Destroy(this.gameObject.transform.parent.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -53,7 +53,6 @@ public class EnemyFSM : MonoBehaviour
 
     private void Update()
     {
-        //print(currentState);
         Vector3 newPos = currentState.UpdateState(speed, type, landDistance);
         this.gameObject.transform.position = newPos;
     }
@@ -63,7 +62,7 @@ public class EnemyFSM : MonoBehaviour
      **********************************************************/
     public void ChangeState(BaseState newState, Vector3 ownPos)
     {
-        Debug.Log("Cambio de estado");
+        //Debug.Log("Cambio de estado");
         currentState.ExitState();
         currentState = newState;
         currentState.SetOwn(ownPos);

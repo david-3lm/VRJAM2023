@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 6253354037670488766}
   - component: {fileID: 7042560180586031122}
   - component: {fileID: 6253354037670488767}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Boloncho
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 6253354038520927025}
   - component: {fileID: 6253354038520927036}
   - component: {fileID: 6253354038520927027}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exterior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 6253354038957086018}
   - component: {fileID: 6253354038957086029}
   - component: {fileID: 6253354038957086028}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Interior
   m_TagString: Untagged
   m_Icon: {fileID: 0}

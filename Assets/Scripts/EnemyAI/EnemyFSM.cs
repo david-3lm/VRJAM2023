@@ -11,7 +11,11 @@ public class EnemyFSM : MonoBehaviour
 
     private Vector3 objv;
 
-    private float speed = 0.5f;
+    private float speed;
+
+    private string type;
+
+    private int landDistance;
 
     // GETTERS & SETTERS //
 
@@ -22,6 +26,9 @@ public class EnemyFSM : MonoBehaviour
     public void SetInitialState(BaseState initialState) { this.initialState = initialState; }
     public void SetCurrentState(BaseState currentState) { this.currentState = currentState; }
     public void SetObjv(Vector3 objv) { this.objv = objv; }
+    public void SetSpeed(float sp) { this.speed = sp;  }
+    public void SetType(string tp) { this.type = tp;  }
+    public void SetLandDistance(int ld) { this.landDistance = ld;  }
 
 
     // CONSTRUCTOR //
@@ -46,7 +53,7 @@ public class EnemyFSM : MonoBehaviour
 
     private void Update()
     {
-        Vector3 newPos = currentState.UpdateState(speed, Time.deltaTime);
+        Vector3 newPos = currentState.UpdateState(speed, type, landDistance);
         this.gameObject.transform.position = newPos;
     }
 

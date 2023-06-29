@@ -250,7 +250,7 @@ public class GameLoop : MonoBehaviour
         }
         else if(type == "Land")
         {
-            int z = Random.Range(-5, 5);
+            int z = Random.Range(-2, 2);
             enemy = GetLandEnemy();
             enemy.transform.position = new Vector3(x, landDistance, z);
 

@@ -15,9 +15,12 @@ public class LevelGenerator : MonoBehaviour
     private GameObject prevTerreno; //Una referencia al un terreno cualquiera (para usarlo sin tener que inicializar un objeto)
     [SerializeField] private List<GameObject> terrenosActivos; //La referencia a los terrenos que estén activos
 
-    public GameObject primerTerreno; //el ultimo terreno que esta (para poder poner el siguiente)
+    private GameObject primerTerreno; //el ultimo terreno que esta (para poder poner el siguiente)
     [SerializeField]private int terrenosIniciales; //Cuantos terrenos va a haber a la vez en pantalla)
     private float distanciaUltimoTerrenoPlayer; //A que distancia debe desaparecer el terreno
+
+    [SerializeField] private GameObject playerRef;//Referencia al jugador
+    [SerializeField] private float distTierra;//Como de bajo tiene que estar el mapa
     void Start()
     {
         //Instanciar la object Pool
@@ -47,7 +50,7 @@ public class LevelGenerator : MonoBehaviour
         for (int i = 0; i < terrenosIniciales; i++)//Inicializar los terrenos que salgan al principio
         {
             prevTerreno = GetTerreno();
-            prevTerreno.transform.position = new Vector3(terrenoSize.x*(i-mitad),0,0);//Supongo que terrenos iniciales es impar
+            prevTerreno.transform.position = new Vector3(terrenoSize.x*(i-mitad), distTierra, playerRef.transform.position.z);//Supongo que terrenos iniciales es impar
             prevTerreno.GetComponent<Rigidbody>().velocity = new Vector3(-velocidadTerreno, 0, 0);
             prevTerreno.SetActive(true);
             terrenosActivos.Add(prevTerreno);
@@ -83,7 +86,7 @@ public class LevelGenerator : MonoBehaviour
     private void SpawnTerreno()//Sacar un terreno al principio del todo
     {
         prevTerreno = GetTerreno();
-        prevTerreno.transform.position = new Vector3(primerTerreno.transform.position.x + terrenoSize.x, 0, 0);
+        prevTerreno.transform.position = new Vector3(primerTerreno.transform.position.x + terrenoSize.x, distTierra, playerRef.transform.position.z);
         prevTerreno.GetComponent<Rigidbody>().velocity = new Vector3(-velocidadTerreno, 0, 0);
         prevTerreno.SetActive(true);
         terrenosActivos.Add(prevTerreno);

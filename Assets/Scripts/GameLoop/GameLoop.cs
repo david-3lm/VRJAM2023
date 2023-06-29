@@ -46,7 +46,7 @@ public class GameLoop : MonoBehaviour
     //El tiempo que dura la partida
     [SerializeField] private float remainingTime;
     //Los enemigos que has matado
-    private int enemyKills = 0;
+    public int enemyKills = 0;
     //Donde esta el agua
     public int landDistance;
 

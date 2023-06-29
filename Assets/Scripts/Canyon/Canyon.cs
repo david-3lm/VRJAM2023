@@ -142,7 +142,7 @@ public class Canyon : MonoBehaviour
     {
         GameObject b = Instantiate(firstBullet, shootOrigins[(int)currentWeapon].transform.position, shootOrigins[(int)currentWeapon].transform.rotation);
         b.transform.SetParent(null);
-        b.GetComponent<CanyonBullet>().SetBullet(firstDamage, firstForce);
+        b.GetComponentInChildren<CanyonBullet>().SetBullet(firstDamage, firstForce);
 
         
 
@@ -178,7 +178,7 @@ public class Canyon : MonoBehaviour
             {
                 GameObject b = Instantiate(secondBullet, shootOrigins[(int)currentWeapon].transform.position, shootOrigins[(int)currentWeapon].transform.rotation);
                 b.transform.SetParent(null);
-                b.GetComponent<CanyonBullet>().SetBullet(secondDamage, secondForce);
+                b.GetComponentInChildren<CanyonBullet>().SetBullet(secondDamage, secondForce);
 
                 s_mc.Shoot();
 

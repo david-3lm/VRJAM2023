@@ -41,10 +41,19 @@ public class AttackState : BaseState
     /*****************************************************
      * Method that is executed while the state is active *
      *****************************************************/
-    public override Vector3 UpdateState(float speed, float deltaTime)
+    public override Vector3 UpdateState(float speed, string type, int landDistance)
     {
-        // Calculate movement
-        this.own = Vector3.MoveTowards(this.own, this.objv, speed * deltaTime);
+        if (type == "Flying")
+        {
+            // Calculate movement
+            this.own = Vector3.MoveTowards(this.own, this.objv, speed * Time.deltaTime);
+        }
+        else
+        {
+
+            // Calculate movement
+            this.own = Vector3.MoveTowards(this.own, new Vector3(this.objv.x, landDistance, this.objv.z), speed * Time.deltaTime);
+        }
 
         // Attack
         Debug.Log("Ataco");

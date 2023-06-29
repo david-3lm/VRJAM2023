@@ -44,16 +44,18 @@ public class GameLoop : MonoBehaviour
 
     [Header("Game variables")]
     //El tiempo que dura la partida
-    private float remainingTime = 30;
+    [SerializeField] private float remainingTime;
     //Los enemigos que has matado
     private int enemyKills = 0;
+    //Donde esta el agua
+    public int landDistance;
 
     private void Start()
     {
         //Deshacer los cambios en caso de que terminemos una partida y le demos a jugar otra vez
         Time.timeScale = 1; //Reanudamos por si acaso el timeScale
-
-        /*
+        Random.InitState(System.DateTime.Now.Millisecond);
+        
         //Instanciar la object Pool (voladores)
         flyingEnemyPool = new List<GameObject>();
         GameObject tmp;
@@ -63,7 +65,7 @@ public class GameLoop : MonoBehaviour
             tmp.SetActive(false);
             flyingEnemyPool.Add(tmp);
         }
-
+        
         //Instanciar la object Pool (tierra)
         landEnemyPool = new List<GameObject>();
 
@@ -87,8 +89,6 @@ public class GameLoop : MonoBehaviour
         {
             SpawnEnemy("Land");
         }
-        */
-        
 
     }
     
@@ -235,17 +235,34 @@ public class GameLoop : MonoBehaviour
 
     public void SpawnEnemy (string type)
     {
-        if(type == "Flying")
+        int x = Random.Range(-140, 140);
+        if (type == "Flying")
         {
+            int y = Random.Range(-8, 2);
+            int z = Random.Range(-10,10);
             enemy = GetFlyingEnemy();
-            //enemy.transform.position = Vector3.zero;
+            enemy.transform.position = new Vector3(x, y , z);
+
+            enemy.transform.LookAt(this.transform.position, Vector3.up);
+
             enemy.SetActive(true);
             flyingEnemiesActivos.Add(enemy);
         }
         else if(type == "Land")
         {
+            int z = Random.Range(-5, 5);
             enemy = GetLandEnemy();
-            //enemy.transform.position = //Hay que ver en que posición los spawneamos
+            enemy.transform.position = new Vector3(x, landDistance, z);
+
+            if (x > 0)
+            {
+                enemy.transform.Rotate(0, -90, 0, Space.World);
+            }
+            else
+            {
+                enemy.transform.Rotate(0, 90, 0, Space.World);
+            }
+
             enemy.SetActive(true);
             landEnemiesActivos.Add(enemy);
         }

@@ -6,7 +6,7 @@ public abstract class BaseState
 {
     public abstract void EnterState(Vector3 obj);
 
-    public abstract Vector3 UpdateState(float speed, float deltaTime);
+    public abstract Vector3 UpdateState(float speed, string type, int landDistance);
 
     public abstract void ExitState();
 

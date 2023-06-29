@@ -243,7 +243,7 @@ public class GameLoop : MonoBehaviour
             enemy = GetFlyingEnemy();
             enemy.transform.position = new Vector3(x, y , z);
 
-            enemy.transform.LookAt(this.transform.position, Vector3.up);
+            enemy.transform.LookAt(playerRef.transform.position, Vector3.up);
 
             enemy.SetActive(true);
             flyingEnemiesActivos.Add(enemy);

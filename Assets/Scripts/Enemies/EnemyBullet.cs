@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanyonBullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     public Rigidbody rb;
 
@@ -10,8 +10,9 @@ public class CanyonBullet : MonoBehaviour
 
     private float force;
 
-    private float lifeTime = 5.0f;
-    public void SetBullet(int d, float f)
+    private float lifeTime = 3.0f;
+
+    public void ShootBullet(int d, float f)
     {
         damage = d;
         force = f;
@@ -28,10 +29,10 @@ public class CanyonBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyController s_ec = other.GetComponent<EnemyController>();
-        if(s_ec != null)
+        GameLoop s_gl = other.GetComponent<GameLoop>();
+        if (s_gl != null)
         {
-            s_ec.ReceiveDamage(damage);
+            s_gl.DecreasePLayerLife(damage);
         }
     }
 }

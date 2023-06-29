@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AttackState : BaseState
 {
@@ -11,6 +12,8 @@ public class AttackState : BaseState
     private Vector3 objv;
     private Vector3 own;
 
+    public UnityEvent attackEvent = new UnityEvent();
+
 
     // GETTERS & SETTERS //
 
@@ -20,7 +23,6 @@ public class AttackState : BaseState
 
     public void SetObjv(Vector3 objv) { this.objv = objv; }
     public override void SetOwn(Vector3 own) { this.own = own; }
-
 
     // CONTRUCTOR //
 
@@ -37,7 +39,6 @@ public class AttackState : BaseState
         SetObjv(objv);
     }
 
-
     /*****************************************************
      * Method that is executed while the state is active *
      *****************************************************/
@@ -47,16 +48,22 @@ public class AttackState : BaseState
         {
             // Calculate movement
             this.own = Vector3.MoveTowards(this.own, this.objv, speed * Time.deltaTime);
+
+            // Attack
+            //Debug.Log("Ataco aire");
         }
         else
         {
 
             // Calculate movement
             this.own = Vector3.MoveTowards(this.own, new Vector3(this.objv.x, landDistance, this.objv.z), speed * Time.deltaTime);
+
+            // Attack
+            //Debug.Log("Ataco tierra");
         }
 
-        // Attack
-        Debug.Log("Ataco");
+        Debug.Log("Evento Ataque");
+        attackEvent.Invoke();
 
         // Move
         return this.own;

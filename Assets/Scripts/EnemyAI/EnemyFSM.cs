@@ -53,6 +53,7 @@ public class EnemyFSM : MonoBehaviour
 
     private void Update()
     {
+        //print(currentState);
         Vector3 newPos = currentState.UpdateState(speed, type, landDistance);
         this.gameObject.transform.position = newPos;
     }
@@ -68,4 +69,6 @@ public class EnemyFSM : MonoBehaviour
         currentState.SetOwn(ownPos);
         currentState.EnterState(objv);
     }
+
+    
 }

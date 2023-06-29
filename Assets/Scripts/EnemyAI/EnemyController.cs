@@ -28,6 +28,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int distAtacar;
     [SerializeField] private int distAcercarse;
 
+    public GameObject airBullet;
+    public GameObject groundBullet;
+
+    public GameObject shootOrigin;
+
+    public GameObject pivot;
 
     // GETTERS & SETTERS //
 
@@ -53,6 +59,8 @@ public class EnemyController : MonoBehaviour
         this.attackState = new AttackState(vecObj);
         this.fleeState = new FleeState(vecObj);
 
+        
+
         //this.fsm = new EnemyFSM();
         this.fsm = this.gameObject.GetComponent<EnemyFSM>() as EnemyFSM;
         this.fsm.SetObjv(this.objv.transform.position);
@@ -60,9 +68,9 @@ public class EnemyController : MonoBehaviour
         this.fsm.SetLandDistance(landDistance);
 
         Vector3 distVec = this.gameObject.transform.position - this.objv.transform.position;
-        this.dist = distVec.magnitude;
+        this.dist = distVec.magnitude;  
 
-        if(this.dist < distAlejarse)
+        if (this.dist < distAlejarse)
         {
             Vector3 ownPos = this.gameObject.transform.position;
             this.fleeState.SetOwn(ownPos);
@@ -80,9 +88,17 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        //print(attackState.attackEvent);
+        attackState.attackEvent.AddListener(Attack);
+    }
+
     // Update is called once per frame
     void Update()
     {
+        pivot.transform.LookAt(objv.transform, pivot.transform.up);
+
         Vector3 distVec = this.gameObject.transform.position - this.objv.transform.position;
         this.dist = distVec.magnitude;
 
@@ -111,5 +127,22 @@ public class EnemyController : MonoBehaviour
     {
         vida -= damage;
         if (vida < 0) gameLoop.DestroyEnemy(this.gameObject, type);
+    }
+
+    private void Attack()
+    {
+        print("Ataque");
+        if (type == "Flying")
+        {
+            GameObject bullet = Instantiate(airBullet, shootOrigin.transform.position, shootOrigin.transform.rotation);
+            bullet.transform.SetParent(null);
+            bullet.GetComponentInChildren<EnemyBullet>().ShootBullet(0, 2000);
+        }
+        else
+        {
+            GameObject bullet = Instantiate(groundBullet, shootOrigin.transform.position, shootOrigin.transform.rotation);
+            bullet.transform.SetParent(null);
+            bullet.GetComponentInChildren<EnemyBullet>().ShootBullet(0, 1000);
+        }
     }
 }

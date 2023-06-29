@@ -53,6 +53,8 @@ public class Canyon : MonoBehaviour
 
     public float secondReloadTime;
 
+    public MaterialController s_mc;
+
     private bool secondReloaded;
 
     private Animator secondAnimator;
@@ -178,6 +180,8 @@ public class Canyon : MonoBehaviour
                 b.transform.SetParent(null);
                 b.GetComponent<CanyonBullet>().SetBullet(secondDamage, secondForce);
 
+                s_mc.Shoot();
+
                 secondAudioSource.Play();
 
                 secondAnimator.SetTrigger("Shoot");
@@ -193,6 +197,7 @@ public class Canyon : MonoBehaviour
     public void SecondReload()
     {
         secondReloaded = true;
+        s_mc.Reload();
     }
 
     public void TurnHorizontal(float x)

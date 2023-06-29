@@ -45,10 +45,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _DIRECTION: 4
-    - _Dissolve: 0.88
-    - _EdgeWidth: 0.348
+    - _Dissolve: 0.519
+    - _EdgeWidth: 0.272
     - _Noise_Scale: 0
-    - _Noise_Strength: 3.35
+    - _Noise_Strength: 6.2
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Use_Texture: 0

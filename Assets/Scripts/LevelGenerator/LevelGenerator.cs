@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject terreno; //El modelo 3d del terreno (tiene que tener un rigidbody sin gravedad ni kinetico)
     private Vector3 terrenoSize; //Lo sacamos a partir del modelo 3d
+    private List<MeshRenderer> terrenoList; //Lista de Sizes
     [SerializeField] private List<GameObject> TerrenoPool; //La pool de objetos para el terreno
     [SerializeField] private int poolSize; //El tamaño que ponemos nosotros que va a tener la pool
     [SerializeField] private int velocidadTerreno; //La velocidad a la que va el terreno (la velocidad de la nave)
@@ -13,7 +16,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private List<GameObject> terrenosActivos; //La referencia a los terrenos que estén activos
 
     public GameObject primerTerreno; //el ultimo terreno que esta (para poder poner el siguiente)
-    private int terrenosIniciales = 3; //Cuantos terrenos va a haber a la vez en pantalla)
+    [SerializeField]private int terrenosIniciales; //Cuantos terrenos va a haber a la vez en pantalla)
     private float distanciaUltimoTerrenoPlayer; //A que distancia debe desaparecer el terreno
     void Start()
     {
@@ -27,7 +30,13 @@ public class LevelGenerator : MonoBehaviour
             TerrenoPool.Add(tmp);
         }
         //Pillar el tamaño de los objetos de la pool
-        terrenoSize= GetTerreno().GetComponent<MeshRenderer>().bounds.size;
+        terrenoList= GetTerreno().GetComponentsInChildren<MeshRenderer>().ToList();
+        var bounds = terrenoList[0].bounds;
+        foreach(MeshRenderer mr in terrenoList)
+        {
+            bounds.Encapsulate(mr.bounds);
+        }
+        terrenoSize = bounds.size;
 
         //Referencia a los objetos de la pool que estén activos
         terrenosActivos = new List<GameObject>();

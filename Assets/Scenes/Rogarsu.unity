@@ -2596,7 +2596,7 @@ PrefabInstance:
     - target: {fileID: 6665665640950352864, guid: 62bfaedf40ee1d940a9b2a22b9b01ed5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62bfaedf40ee1d940a9b2a22b9b01ed5, type: 3}
@@ -10225,6 +10225,9 @@ MonoBehaviour:
   canvasGameOver: {fileID: 0}
   canvasGameOverVictory: {fileID: 0}
   canvasPauseMenu: {fileID: 0}
+  timeText: {fileID: 0}
+  playerLifeText: {fileID: 0}
+  playerKillsText: {fileID: 0}
   remainingTime: 60
   enemyKills: 0
   landDistance: -25
@@ -10787,7 +10790,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dcf4714826469b94abc1009737515e6e, type: 2}
+  - {fileID: 2100000, guid: 8cd9373e13715e946be406a06f54578d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

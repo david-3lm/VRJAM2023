@@ -122,6 +122,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void ChangeToGetClose()
+    {
+        fsm.ChangeState(getCloseState, this.gameObject.transform.position);
+    }
+
 
 
     public void ReceiveDamage(int damage)

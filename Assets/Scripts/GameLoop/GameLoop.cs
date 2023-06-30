@@ -58,6 +58,8 @@ public class GameLoop : MonoBehaviour
 
     [Header("XR")]
     [SerializeField] private InputActionReference menuInputActionReference;
+    [SerializeField] private GameObject rayInteractorLeftHand;
+    [SerializeField] private GameObject directInteractorLeftHand;
 
     private void OnEnable()
     {
@@ -166,6 +168,9 @@ public class GameLoop : MonoBehaviour
     {
         isPaused = true; //Se indica que se para un menú
         Time.timeScale = 0; //Se paran los updates
+
+        directInteractorLeftHand.SetActive(false);
+        rayInteractorLeftHand.SetActive(true);
         canvasPauseMenu.SetActive(true);
     }
 
@@ -173,6 +178,8 @@ public class GameLoop : MonoBehaviour
     {
         isPaused = false; //Se indica que se reanuda
         Time.timeScale = 1; //Se paran los updates
+        rayInteractorLeftHand.SetActive(false);
+        directInteractorLeftHand.SetActive(true);
         canvasPauseMenu.SetActive(false);
     }
 
@@ -302,6 +309,7 @@ public class GameLoop : MonoBehaviour
         EnemyController cont = enemy.GetComponent<EnemyController>();
         cont.vida = 100;
         cont.ChangePos(enemy.transform.position);
+        cont.ChangeToGetClose();
     }
 
 }

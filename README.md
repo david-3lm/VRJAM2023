@@ -10,3 +10,11 @@ This game was made for VR Jam 2023 Hosted by [Justin P Barnett- VR Dev](https://
 
 
 ### Credits
+RODRIGO GARCÍA SUÁREZ
+PABLO ÁLVAREZ DE LARA
+DAVID LÓPEZ LÓPEZ
+JAVIER PICADO HIJÓN
+ISABEL ESCUDERO ORDEN
+MIGUEL RODRÍGUEZ DE ROJAS
+IVAN GÓMEZ 
+

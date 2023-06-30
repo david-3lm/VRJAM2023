@@ -32,7 +32,6 @@ public class GameLoop : MonoBehaviour
     [Header("UI")]
     //Si está activado algún menú que pausa el juego
     public bool isPaused = false;
-
     //El canvas de todos los elementos a la vez de la UI ingame
     public GameObject canvasUI_Ingame;
     //El canvas del GameOver
@@ -41,6 +40,12 @@ public class GameLoop : MonoBehaviour
     public GameObject canvasGameOverVictory;
     //El canvas del menu de pausa
     public GameObject canvasPauseMenu;
+    //El texto con el tiempo
+    public Text timeText;
+    //El texto con la vida
+    public Text playerLifeText;
+    //El texto con las kills
+    public Text playerKillsText;
 
     [Header("Game variables")]
     //El tiempo que dura la partida
@@ -112,6 +117,7 @@ public class GameLoop : MonoBehaviour
         //Ponemos el timeScale al 0 para que las cosas que dependan del tiempo no se actualicen
         Time.timeScale = 0;
         canvasGameOver.SetActive(true); //Activamos el canvas del GameOver
+        canvasUI_Ingame.SetActive(false);
     }
 
     private void GameOverVictory() //Función que pasa cuando ganas
@@ -131,6 +137,7 @@ public class GameLoop : MonoBehaviour
         //Actualizar UI de victoria
 
         canvasGameOverVictory.SetActive(true);//Activamos el canvas del GameOverVictory
+        canvasUI_Ingame.SetActive(false);
     }
 
     public void ActivatePauseMenu()
@@ -154,7 +161,7 @@ public class GameLoop : MonoBehaviour
         timeToDisplay += 1;
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        //timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void DecreasePLayerLife(float damage)
@@ -167,6 +174,7 @@ public class GameLoop : MonoBehaviour
         }
 
         //Actualizar el UI
+        playerLifeText.text = playerLife.ToString();
     }
 
     public void DestroyEnemy(GameObject enemy, string type)
@@ -184,6 +192,9 @@ public class GameLoop : MonoBehaviour
             SpawnEnemy("Land");
         }
         enemyKills += 1;
+
+        //Actualizamos la UI
+        playerKillsText.text = enemyKills.ToString();
     }
 
     private int CalculateHighScore() //Es una función por si se quiere cambiar

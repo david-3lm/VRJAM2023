@@ -13035,8 +13035,8 @@ MonoBehaviour:
   playerRef: {fileID: 1471487359}
   playerLife: 100
   flyingEnemyRef: {fileID: 919132148385405985}
-  flyingPoolSize: 5
-  flyingEnemiesOnScreen: 3
+  flyingPoolSize: 6
+  flyingEnemiesOnScreen: 4
   landEnemyRef: {fileID: 919132148999715151}
   landPoolSize: 4
   landEnemiesOnScreen: 2

@@ -41,8 +41,8 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Reloaded: 0
-    - _TimeReloaded: 0.8438176
+    - _Reloaded: 1
+    - _TimeReloaded: 1.002116
     m_Colors:
     - _Color: {r: 7.999999, g: 7.790575, b: 0, a: 0}
   m_BuildTextureStacks: []

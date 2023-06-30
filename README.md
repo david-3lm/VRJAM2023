@@ -1,18 +1,12 @@
-# VR-Game-Jam-Template
- Starter Project using Unity XR Toolkit created for VR Jam 2023
+![Image](Assets/Images/UI/Titulo.png)
 
-# Learn More About This Project
-[<img src="https://i.ytimg.com/vi/apnfGuMI0Dc/maxresdefault.jpg" width="50%">](https://youtu.be/apnfGuMI0Dc)
+# **THE UNIVERSE IS IN DANGER!!**
 
-https://youtu.be/apnfGuMI0Dc
+In Spacial Deliverance we are part of an organization that seeks to free the universe from the terrible clutches of the Kloptob'Or. We have to deliver peace to those planets in order to liberate them. If you want peace, prepare for war.
 
-# External Ressources
-This project uses a combination of these assets and tutorials :
 
-https://youtu.be/6OT43pvUyfY
+## #VRJam2023
+This game was made for VR Jam 2023 Hosted by [Justin P Barnett- VR Dev](https://justinpbarnett.itch.io/), [kokutouchichi](https://kokutouchichi.itch.io/), [Valem](https://valem.itch.io/), [C-Through](https://c-through.itch.io/).
 
-https://youtu.be/JCyJ26cIM0Y
 
-https://kenney.nl/assets?q=audio
-
-https://github.com/Unity-Technologies/XR-Interaction-Toolkit-Examples
+### Credits

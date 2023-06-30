@@ -235,7 +235,15 @@ public class GameLoop : MonoBehaviour
 
     public void SpawnEnemy (string type)
     {
-        int x = Random.Range(-140, 140);
+        int x;
+        if(Random.Range(0,1) == 0)
+        {
+            x = Random.Range(200, 300);
+        }
+        else
+        {
+            x = Random.Range(-200, -300);
+        }
         if (type == "Flying")
         {
             int y = Random.Range(-8, 2);

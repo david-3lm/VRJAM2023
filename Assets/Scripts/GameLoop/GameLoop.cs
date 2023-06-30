@@ -9,7 +9,7 @@ public class GameLoop : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField] private GameObject playerRef; //La referencia al jugador
-    public int playerLife = 100; //La vida del jugador
+    public float playerLife = 100f; //La vida del jugador
 
 
     [Header("Enemies")] //Esto depende de como haga pablo lo de los enemigos
@@ -46,7 +46,7 @@ public class GameLoop : MonoBehaviour
     //El tiempo que dura la partida
     [SerializeField] private float remainingTime;
     //Los enemigos que has matado
-    private int enemyKills = 0;
+    public int enemyKills = 0;
     //Donde esta el agua
     public int landDistance;
 
@@ -157,7 +157,7 @@ public class GameLoop : MonoBehaviour
         //timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    public void DecreasePLayerLife(int damage)
+    public void DecreasePLayerLife(float damage)
     {
         playerLife -= damage; //Le restamos el daño
 
@@ -235,7 +235,15 @@ public class GameLoop : MonoBehaviour
 
     public void SpawnEnemy (string type)
     {
-        int x = Random.Range(-140, 140);
+        int x;
+        if(Random.Range(0,1) == 0)
+        {
+            x = Random.Range(200, 300);
+        }
+        else
+        {
+            x = Random.Range(-200, -300);
+        }
         if (type == "Flying")
         {
             int y = Random.Range(-8, 2);
@@ -250,22 +258,19 @@ public class GameLoop : MonoBehaviour
         }
         else if(type == "Land")
         {
-            int z = Random.Range(-5, 5);
+            int z = Random.Range(-2, 2);
             enemy = GetLandEnemy();
             enemy.transform.position = new Vector3(x, landDistance, z);
 
-            if (x > 0)
-            {
-                enemy.transform.Rotate(0, -90, 0, Space.World);
-            }
-            else
-            {
-                enemy.transform.Rotate(0, 90, 0, Space.World);
-            }
+            enemy.transform.LookAt(new Vector3(playerRef.transform.position.x, landDistance, playerRef.transform.position.z), Vector3.up);
 
             enemy.SetActive(true);
             landEnemiesActivos.Add(enemy);
         }
+
+        EnemyController cont = enemy.GetComponent<EnemyController>();
+        cont.vida = 100;
+        cont.ChangePos(enemy.transform.position);
     }
 
 }

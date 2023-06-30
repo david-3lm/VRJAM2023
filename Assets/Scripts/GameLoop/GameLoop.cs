@@ -138,6 +138,8 @@ public class GameLoop : MonoBehaviour
         isPaused = true; //Se indica que se para un menú
         //Ponemos el timeScale al 0 para que las cosas que dependan del tiempo no se actualicen
         Time.timeScale = 0;
+        directInteractorLeftHand.SetActive(false);
+        rayInteractorLeftHand.SetActive(true);
         canvasGameOver.SetActive(true); //Activamos el canvas del GameOver
     }
 
@@ -146,6 +148,8 @@ public class GameLoop : MonoBehaviour
         isPaused = true; //Se indica que se para un menú
         //Ponemos el timeScale al 0 para que las cosas que dependan del tiempo no se actualicen
         Time.timeScale = 0;
+        directInteractorLeftHand.SetActive(false);
+        rayInteractorLeftHand.SetActive(true);
 
         int previousHighScore = GetHighScore(); //Pillamos la antigua puntuación
         int currentScore = CalculateHighScore(); //Calculamos la puntuación actual

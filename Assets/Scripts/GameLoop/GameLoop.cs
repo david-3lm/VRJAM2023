@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameLoop : MonoBehaviour
 {
@@ -32,8 +33,6 @@ public class GameLoop : MonoBehaviour
     [Header("UI")]
     //Si está activado algún menú que pausa el juego
     public bool isPaused = false;
-    //El canvas de todos los elementos a la vez de la UI ingame
-    public GameObject canvasUI_Ingame;
     //El canvas del GameOver
     public GameObject canvasGameOver;
     //El canvas del GameOverVictory
@@ -41,11 +40,13 @@ public class GameLoop : MonoBehaviour
     //El canvas del menu de pausa
     public GameObject canvasPauseMenu;
     //El texto con el tiempo
-    public Text timeText;
+    public TMP_Text timeText;
     //El texto con la vida
-    public Text playerLifeText;
+    public TMP_Text playerLifeText;
     //El texto con las kills
-    public Text playerKillsText;
+    public TMP_Text playerKillsText;
+    //El texto del Score
+    public TMP_Text scoreText;
 
     [Header("Game variables")]
     //El tiempo que dura la partida
@@ -54,6 +55,25 @@ public class GameLoop : MonoBehaviour
     public int enemyKills = 0;
     //Donde esta el agua
     public int landDistance;
+
+    [Header("XR")]
+    [SerializeField] private InputActionReference menuInputActionReference;
+
+    private void OnEnable()
+    {
+        menuInputActionReference.action.started += MenuPressed;
+    }
+
+    private void OnDisable()
+    {
+        menuInputActionReference.action.started -= MenuPressed;
+
+    }
+
+    private void MenuPressed(InputAction.CallbackContext context)
+    {
+        ActivatePauseMenu();
+    }
 
     private void Start()
     {
@@ -117,7 +137,6 @@ public class GameLoop : MonoBehaviour
         //Ponemos el timeScale al 0 para que las cosas que dependan del tiempo no se actualicen
         Time.timeScale = 0;
         canvasGameOver.SetActive(true); //Activamos el canvas del GameOver
-        canvasUI_Ingame.SetActive(false);
     }
 
     private void GameOverVictory() //Función que pasa cuando ganas
@@ -132,19 +151,21 @@ public class GameLoop : MonoBehaviour
         if(currentScore > previousHighScore) //Si tenemos ahora mejor puntuación la actualizamos
         {
             SetHighScore(currentScore);
+            //Actualizar UI de victoria
+            scoreText.text = "Score (New Record!):<br>" + currentScore;
+        }
+        else
+        {
+            scoreText.text = "Score:<br>" + currentScore;
         }
 
-        //Actualizar UI de victoria
-
         canvasGameOverVictory.SetActive(true);//Activamos el canvas del GameOverVictory
-        canvasUI_Ingame.SetActive(false);
     }
 
     public void ActivatePauseMenu()
     {
         isPaused = true; //Se indica que se para un menú
         Time.timeScale = 0; //Se paran los updates
-        canvasUI_Ingame.SetActive(false);
         canvasPauseMenu.SetActive(true);
     }
 
@@ -152,7 +173,6 @@ public class GameLoop : MonoBehaviour
     {
         isPaused = false; //Se indica que se reanuda
         Time.timeScale = 1; //Se paran los updates
-        canvasUI_Ingame.SetActive(true);
         canvasPauseMenu.SetActive(false);
     }
 
@@ -161,7 +181,7 @@ public class GameLoop : MonoBehaviour
         timeToDisplay += 1;
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timeText.text = "Time to <br>Finish<br>" + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void DecreasePLayerLife(float damage)
@@ -174,7 +194,7 @@ public class GameLoop : MonoBehaviour
         }
 
         //Actualizar el UI
-        playerLifeText.text = playerLife.ToString();
+        playerLifeText.text = "Life<br>" + (int)playerLife;
     }
 
     public void DestroyEnemy(GameObject enemy, string type)
@@ -194,12 +214,12 @@ public class GameLoop : MonoBehaviour
         enemyKills += 1;
 
         //Actualizamos la UI
-        playerKillsText.text = enemyKills.ToString();
+        playerKillsText.text = "Enemies Killed<br>" + enemyKills.ToString();
     }
 
     private int CalculateHighScore() //Es una función por si se quiere cambiar
     {
-        return enemyKills;
+        return (int) (enemyKills * playerLife);
     }
 
     public void SetHighScore(int score)

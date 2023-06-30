@@ -136,7 +136,7 @@ public class EnemyController : MonoBehaviour
         {
             GameObject bullet = Instantiate(airBullet, shootOrigin.transform.position, shootOrigin.transform.rotation);
             bullet.transform.SetParent(null);
-            bullet.GetComponentInChildren<EnemyBullet>().ShootBullet(0.02f, 2000);
+            bullet.GetComponentInChildren<EnemyBullet>().ShootBullet(0.05f, 2000);
         }
         else
         {

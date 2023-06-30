@@ -309,7 +309,6 @@ public class GameLoop : MonoBehaviour
         EnemyController cont = enemy.GetComponent<EnemyController>();
         cont.vida = 100;
         cont.ChangePos(enemy.transform.position);
-        cont.ChangeToGetClose();
     }
 
 }
